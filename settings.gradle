@@ -1,0 +1,30 @@
+rootProject.name = 'bacs-multi-hexsagonal'
+include 'common'
+
+include 'core-modules:jpa-core'
+findProject(':core-modules:jpa-core')?.name = 'jpa-core'
+
+include 'core-modules:mybatis-core'
+findProject(':core-modules:mybatis-core')?.name = 'mybatis-core'
+
+include 'core-modules:server-config-modules:jasypt-core'
+findProject(':core-modules:server-config-modules:jasypt-core')?.name = 'jasypt-core'
+
+include 'core-modules:server-config-modules:consul-core'
+findProject(':core-modules:server-config-modules:consul-core')?.name = 'consul-core'
+
+include 'core-modules:server-config-modules:exe-timer-core'
+findProject(':core-modules:server-config-modules:exe-timer-core')?.name = 'exe-timer-core'
+
+include 'core-modules:server-config-modules:cors-core'
+findProject(':core-modules:server-config-modules:cors-core')?.name = 'cors-core'
+
+include 'core-modules:jwt-modules:jwt-provider-core'
+findProject(':core-modules:jwt-modules:jwt-provider-core')?.name = 'jwt-provider-core'
+
+include 'core-modules:jwt-modules:jwt-properties'
+findProject(':core-modules:jwt-modules:jwt-properties')?.name = 'jwt-properties'
+
+include 'core-modules:secure-random-core'
+findProject(':core-modules:secure-random-core')?.name = 'secure-random-core'
+

@@ -1,0 +1,49 @@
+version: "3"	#docker version 3 사용
+services: 	#service들 정의
+  bacs_auth_postgresql:
+    image: postgres:14
+    environment:
+      TZ: Asia/Seoul
+      POSTGRES_DB: '${AUTH_POSTGRES_DBNAME}'
+      POSTGRES_USER: '${AUTH_POSTGRES_USERNAME}'
+      POSTGRES_PASSWORD: '${AUTH_POSTGRES_PASSWORD}'
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+    restart: on-failure
+    ports:
+      - '5433:5432'
+    volumes:
+      - bacs_volume_auth_postgres:/var/lib/postgresql/data
+      - ./db/initdb.d:/docker-entrypoint-initdb.d:ro
+    env_file:
+      - .env
+
+  bacs_auth_redis:
+    image: redis:7.0
+    ports:
+      - '6379:6379'
+    volumes:
+      - bacs_volume_auth_redis:/redis/data
+      - ./config/redis.conf:/usr/local/conf/redis.conf
+    # 컨테이너에 docker label을 이용해서 메타데이터 추가
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    # 컨테이너 종료 시 재시작 여부 설정
+    restart: on-failure
+    #    command: redis-server /usr/local/conf/redis.conf
+
+  example_consul:
+    image: consul:1.15.4
+    ports:
+      - "8500:8500"
+    volumes:
+      - ./config/consul/config:/config
+      - ./config/consul/data:/data
+    command: agent -server -data-dir=/data -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect=1
+    restart: on-failure
+    environment:
+      CONSUL_LOCAL_CONFIG: '{"ui_config":{"enabled":true}, "connect": {"enabled": true}}'
+
+volumes:
+  bacs_volume_auth_postgres:
+  bacs_volume_auth_redis:

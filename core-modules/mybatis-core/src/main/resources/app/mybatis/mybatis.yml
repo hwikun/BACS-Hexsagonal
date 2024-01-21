@@ -1,0 +1,4 @@
+# MyBatis
+mybatis:
+  type-aliases-package: com.hwikun.bacs
+  mapper-locations: mappers/**/*.xml

@@ -1,0 +1,5 @@
+app:
+  security:
+    jwt:
+      secret: ENC(ZaBVlG8PXW4A3++9QT0uI8FoM6ymZHIDWZZcYdRM/dm5dL6ykX8QTtbH0Ocjsug1aKrAw5KFVAm0lyQHDThOO/Zzc1sRF8kMR7XxU3wkH4fQMmalEAh+IYqiN/RFUKZV40NwzZDin5Y=)
+      ttl: 1_800_000 # [Millis]
