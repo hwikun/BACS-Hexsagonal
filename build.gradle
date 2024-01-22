@@ -145,3 +145,143 @@ project(secureRandomModule) {
 }
 
 // Authentication ======================================================================================================
+
+project(authenticationServiceModule) {
+    dependencies {
+        // Core Modules
+        implementation commonProject
+        implementation project(secureRandomModule)
+        implementation project(jasyptCoreModule)
+        implementation project(consulCoreModule)
+        implementation project(jwtProviderModule)
+        implementation project(corsCoreModule)
+
+        // Authentication Service Modules
+        implementation project(authenticationDomainModule)
+        implementation project(authenticationExceptionModule)
+        implementation project(authenticationReadModelsModule)
+        implementation project(authenticationApplicationModule)
+        implementation project(authenticationRdbAdapterModule)
+
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    bootJar {
+        enabled = true
+    }
+}
+
+project(authenticationApplicationModule) {
+    dependencies {
+        implementation commonProject
+        implementation project(secureRandomModule)
+        implementation project(jwtProviderModule)
+
+        api project(authenticationDomainModule)
+        api project(authenticationExceptionModule)
+        api project(authenticationReadModelsModule)
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        // password encoder
+        implementation 'org.springframework.security:spring-security-crypto'
+
+        // jwt
+        implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+        implementation 'io.jsonwebtoken:jjwt-gson:0.11.5'
+    }
+}
+
+project(authenticationDomainModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(authenticationExceptionModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(authenticationReadModelsModule) {
+    dependencies {
+        implementation commonProject
+        implementation project(authenticationDomainModule)
+    }
+}
+
+project(authenticationRdbAdapterModule) {
+    dependencies {
+        implementation commonProject
+        implementation jpaCoreProject
+
+        implementation project(authenticationApplicationModule)
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        runtimeOnly 'org.postgresql:postgresql'
+
+        // Map Struct
+        implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+        annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+        annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+
+        // Flyway
+        implementation 'org.flywaydb:flyway-core'
+    }
+}
+
+// Admin ===============================================================================================================
+
+project(adminServiceModule) {
+    dependencies {
+        // Core Modules
+        implementation commonProject
+        implementation project(jasyptCoreModule)
+        implementation project(consulCoreModule)
+//        implementation project(corsCoreModule)
+
+        // Admin Service Modules
+        implementation project(adminDomainModule)
+        implementation project(adminExceptionModule)
+        implementation project(adminReadModelsModule)
+        implementation project(adminApplicationModule)
+
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    bootJar {
+        enabled = true
+    }
+}
+
+project(adminApplicationModule) {
+    dependencies {
+        implementation commonProject
+
+        api project(adminDomainModule)
+        api project(adminExceptionModule)
+        api project(adminReadModelsModule)
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
+project(adminDomainModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(adminExceptionModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(adminReadModelsModule) {
+    dependencies {
+        implementation commonProject
+        implementation project(adminDomainModule)
+    }
+}

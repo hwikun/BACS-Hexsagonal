@@ -1,6 +1,7 @@
 rootProject.name = 'bacs-multi-hexsagonal'
 include 'common'
-
+include 'services'
+// Core Modules ========================================================================================================
 include 'core-modules:jpa-core'
 findProject(':core-modules:jpa-core')?.name = 'jpa-core'
 
@@ -27,4 +28,68 @@ findProject(':core-modules:jwt-modules:jwt-properties')?.name = 'jwt-properties'
 
 include 'core-modules:secure-random-core'
 findProject(':core-modules:secure-random-core')?.name = 'secure-random-core'
+
+// Homepage ============================================================================================================
+
+include 'services:homepage-service'
+findProject(':services:homepage-service')?.name = 'homepage-service'
+
+// Admin ===============================================================================================================
+
+include 'services:admin-service'
+findProject(':services:admin-service')?.name = 'admin-service'
+
+include 'services:admin-service:data'
+findProject(':services:admin-service:data')?.name = 'data'
+
+include 'services:admin-service:driving-adapters'
+findProject(':services:admin-service:driving-adapters')?.name = 'driving-adapters'
+
+include 'services:admin-service:driven-adapters'
+findProject(':services:admin-service:driven-adapters')?.name = 'driven-adapters'
+
+include 'services:admin-service:admin-application'
+findProject(':services:admin-service:admin-application')?.name = 'admin-application'
+
+include 'services:admin-service:data:admin-domain'
+findProject(':services:admin-service:data:admin-domain')?.name = 'admin-domain'
+
+include 'services:admin-service:data:admin-exception'
+findProject(':services:admin-service:data:admin-exception')?.name = 'admin-exception'
+
+include 'services:admin-service:data:admin-readmodels'
+findProject(':services:admin-service:data:admin-readmodels')?.name = 'admin-readmodels'
+
+// Kiosk ===============================================================================================================
+
+include 'services:kiosk-service'
+findProject(':services:kiosk-service')?.name = 'kiosk-service'
+
+// Authentication ======================================================================================================
+include 'services:authentication-service'
+findProject(':services:authentication-service')?.name = 'authentication-service'
+
+include 'services:authentication-service:data'
+findProject(':services:authentication-service:data')?.name = 'data'
+
+include 'services:authentication-service:driving-adapters'
+findProject(':services:authentication-service:driving-adapters')?.name = 'driving-adapters'
+
+include 'services:authentication-service:authentication-application'
+findProject(':services:authentication-service:authentication-application')?.name = 'authentication-application'
+
+include 'services:authentication-service:data:authentication-domain'
+findProject(':services:authentication-service:data:authentication-domain')?.name = 'authentication-domain'
+
+include 'services:authentication-service:data:authentication-readmodels'
+findProject(':services:authentication-service:data:authentication-readmodels')?.name = 'authentication-readmodels'
+
+include 'services:authentication-service:data:authentication-exception'
+findProject(':services:authentication-service:data:authentication-exception')?.name = 'authentication-exception'
+
+include 'services:authentication-service:driven-adapters'
+findProject(':services:authentication-service:driven-adapters')?.name = 'driven-adapters'
+
+include 'services:authentication-service:driven-adapters:authentication-rdb-adapter'
+findProject(':services:authentication-service:driven-adapters:authentication-rdb-adapter')?.name = 'authentication-rdb-adapter'
 

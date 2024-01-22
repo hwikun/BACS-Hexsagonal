@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ENC(YghRWPWeIrL8qti3NVIBDi/OW97OQFyYUCKMX+hhRnw7MqgTOirha938VDiFOtB3OJTRtHnbQlk=)
+    username: ENC(3e/lfmfnTztA5cnz+2PBew==)
+    password: ENC(VjU0WYGz8p9vSBGc1YIiuQ==)
+
+logging:
+  level:
+    root: debug
+#    org.hibernate.orm.jdbc.bind: trace
