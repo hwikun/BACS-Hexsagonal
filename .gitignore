@@ -36,3 +36,10 @@ out/
 ### VS Code ###
 .vscode/
 .env
+/config/consul/data/checkpoint-signature
+/config/consul/data/serf/local.snapshot
+/config/consul/data/node-id
+/config/consul/data/raft/peers.info
+/config/consul/data/raft/raft.db
+/config/consul/data/serf/remote.snapshot
+/config/consul/data/server_metadata.json
