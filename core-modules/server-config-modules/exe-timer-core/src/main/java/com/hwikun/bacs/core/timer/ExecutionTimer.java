@@ -20,7 +20,7 @@ public class ExecutionTimer {
     // 여러 표현식을 한번에 사용할 때는 && || ! 등으로 사용가능(포인트컷 표현식 결합)
 
     // 메서드 실행 전,후로 시간을 공유해야 하기 때문
-    @Around("@annotation(ExeTimer)")
+    @Around("@annotation(ExeTimer) || @within(ExeTimer)")
     public Object AssumeExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         if (!log.isEnabledForLevel(Level.DEBUG /* 사용자가 입력한 로깅 레벨... */)) {
             return joinPoint.proceed();

@@ -162,6 +162,8 @@ project(authenticationServiceModule) {
         implementation project(authenticationReadModelsModule)
         implementation project(authenticationApplicationModule)
         implementation project(authenticationRdbAdapterModule)
+        implementation project(authenticationWebAdapterModule)
+        implementation project(authenticationRedisAdapterModule)
 
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -246,6 +248,23 @@ project(authenticationWebAdapterModule) {
         implementation 'org.mapstruct:mapstruct:1.5.3.Final'
         annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
         annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    }
+}
+
+project(authenticationRedisAdapterModule) {
+    dependencies {
+        implementation commonProject
+        implementation jpaCoreProject
+        implementation project(authenticationApplicationModule)
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        // Map Struct
+        implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+        annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+        annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+
+        //redis
+        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     }
 }
 

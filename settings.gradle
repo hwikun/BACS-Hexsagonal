@@ -96,3 +96,6 @@ findProject(':services:authentication-service:driven-adapters:authentication-rdb
 include 'services:authentication-service:driving-adapters:authentication-web-adapter'
 findProject(':services:authentication-service:driving-adapters:authentication-web-adapter')?.name = 'authentication-web-adapter'
 
+include 'services:authentication-service:driven-adapters:authentication-redis-adapter'
+findProject(':services:authentication-service:driven-adapters:authentication-redis-adapter')?.name = 'authentication-redis-adapter'
+

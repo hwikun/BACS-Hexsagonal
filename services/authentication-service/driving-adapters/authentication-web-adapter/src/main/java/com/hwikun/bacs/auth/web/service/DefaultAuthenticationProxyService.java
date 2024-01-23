@@ -1,8 +1,10 @@
 package com.hwikun.bacs.auth.web.service;
 
+import com.hwikun.bacs.auth.application.data.Tokens;
 import com.hwikun.bacs.auth.application.usecase.AuthenticationUseCase;
 import com.hwikun.bacs.auth.domain.Account;
 import com.hwikun.bacs.auth.domain.types.AccountStatus;
+import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignInRequestDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignUpRequestDto;
 import com.hwikun.bacs.auth.web.mapper.AuthenticationDtoMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +19,13 @@ public class DefaultAuthenticationProxyService implements AuthenticationProxySer
 
     private final AuthenticationDtoMapper mapper;
     @Override
-    public boolean signUp(SignUpRequestDto dto) {
+    public Account signUp(SignUpRequestDto dto, AccountStatus status) {
         Account account = mapper.toDomain(dto.username(), dto.password(), AccountStatus.ACTIVE);
-        return authenticationUseCase.signUp(account) != null;
+        return authenticationUseCase.signUp(account);
+    }
+
+    @Override
+    public Tokens signIn(SignInRequestDto body) {
+        return authenticationUseCase.signIn(body.username(), body.rawPassword());
     }
 }

@@ -1,7 +1,13 @@
 package com.hwikun.bacs.auth.web.service;
 
+import com.hwikun.bacs.auth.application.data.Tokens;
+import com.hwikun.bacs.auth.domain.Account;
+import com.hwikun.bacs.auth.domain.types.AccountStatus;
+import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignInRequestDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignUpRequestDto;
 
 public interface AuthenticationProxyService {
-    boolean signUp(SignUpRequestDto dto);
+    Account signUp(SignUpRequestDto dto, AccountStatus status);
+
+    Tokens signIn(SignInRequestDto body);
 }
