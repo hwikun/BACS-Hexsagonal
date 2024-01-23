@@ -11,4 +11,9 @@ public final class AccountReadModels {
             String password,
             AccountStatus status
     ) {}
+
+    @Builder
+    public record AccountSaltReadModel(
+            String salt
+    ) {}
 }

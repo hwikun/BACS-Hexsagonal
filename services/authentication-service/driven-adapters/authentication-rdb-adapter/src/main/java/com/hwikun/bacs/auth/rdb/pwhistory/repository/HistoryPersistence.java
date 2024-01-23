@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 @Slf4j
@@ -21,5 +23,17 @@ public class HistoryPersistence implements PasswordHistoryRepository {
         HistoryEntity entity = historyJpaRepository.save(mapper.toEntity(history));
 
         return mapper.toDomain(entity);
+    }
+
+    @Override
+    public List<PasswordHistory> findAllHistory(String username) {
+        List<HistoryEntity> historyEntityList = historyJpaRepository.findAllByUsername(username);
+        return mapper.toDomain(historyEntityList);
+    }
+
+    @Override
+    public void delete(PasswordHistory domain) {
+        HistoryEntity history = mapper.toEntity(domain);
+        historyJpaRepository.delete(history);
     }
 }

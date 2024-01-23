@@ -15,7 +15,6 @@ import java.io.Serializable;
 public final class PasswordHistory implements Serializable {
     @Getter
     private String id;
-    public String accountId;
     public String username;
     public String password;
 }

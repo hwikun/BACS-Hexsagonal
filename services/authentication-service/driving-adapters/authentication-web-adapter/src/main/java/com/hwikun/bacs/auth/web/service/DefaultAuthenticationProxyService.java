@@ -4,6 +4,7 @@ import com.hwikun.bacs.auth.application.data.Tokens;
 import com.hwikun.bacs.auth.application.usecase.AuthenticationUseCase;
 import com.hwikun.bacs.auth.domain.Account;
 import com.hwikun.bacs.auth.domain.types.AccountStatus;
+import com.hwikun.bacs.auth.web.dto.AuthenticationDto.ChangePasswordRequestDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignInRequestDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignUpRequestDto;
 import com.hwikun.bacs.auth.web.mapper.AuthenticationDtoMapper;
@@ -27,5 +28,10 @@ public class DefaultAuthenticationProxyService implements AuthenticationProxySer
     @Override
     public Tokens signIn(SignInRequestDto body) {
         return authenticationUseCase.signIn(body.username(), body.rawPassword());
+    }
+
+    @Override
+    public boolean changePassword(ChangePasswordRequestDto dto) {
+        return authenticationUseCase.changePassword(dto.username(), dto.newPassword()) != null;
     }
 }

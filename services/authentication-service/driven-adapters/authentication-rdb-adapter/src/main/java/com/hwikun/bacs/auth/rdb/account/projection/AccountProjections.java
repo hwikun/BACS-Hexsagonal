@@ -11,4 +11,9 @@ public final class AccountProjections {
             String password,
             AccountStatus status
     ) {}
+
+    @Builder
+    public record SaltProjection(
+            String salt
+    ) {}
 }

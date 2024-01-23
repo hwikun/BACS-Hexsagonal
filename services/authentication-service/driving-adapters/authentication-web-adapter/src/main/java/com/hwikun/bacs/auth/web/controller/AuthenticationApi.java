@@ -2,6 +2,8 @@ package com.hwikun.bacs.auth.web.controller;
 
 import com.hwikun.bacs.auth.application.data.Tokens;
 import com.hwikun.bacs.auth.domain.types.AccountStatus;
+import com.hwikun.bacs.auth.web.dto.AuthenticationDto.ChangePasswordRequestDto;
+import com.hwikun.bacs.auth.web.dto.AuthenticationDto.ChangePasswordResponseDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignInRequestDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignInResponseDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignUpRequestDto;
@@ -56,6 +58,15 @@ public class AuthenticationApi {
 
         return SignInResponseDto.builder()
                 .accessToken(tokens.accessToken())
+                .build();
+    }
+
+    @PostMapping("/change-password")
+    public ChangePasswordResponseDto changePassword(@RequestBody ChangePasswordRequestDto dto) {
+        boolean isSuccess = authenticationProxyService.changePassword(dto);
+
+        return ChangePasswordResponseDto.builder()
+                .isSuccess(isSuccess)
                 .build();
     }
 }

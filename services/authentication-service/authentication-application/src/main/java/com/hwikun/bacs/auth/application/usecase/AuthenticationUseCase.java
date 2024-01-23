@@ -6,5 +6,5 @@ import com.hwikun.bacs.auth.domain.Account;
 public interface AuthenticationUseCase {
     Account signUp(Account account);
     Tokens signIn(String username, String rawPassword);
-//    Account changePassword(String username, String newPassword);
+    Account changePassword(String username, String newPassword);
 }

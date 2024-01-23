@@ -38,4 +38,17 @@ public final class AuthenticationDto {
             @JsonProperty("password")
             String rawPassword
     ) {}
+
+    @Builder
+    public record ChangePasswordResponseDto(
+            boolean isSuccess
+    ) {}
+
+    @Builder
+    public record ChangePasswordRequestDto(
+            @NotBlank
+            String username,
+            @NotBlank
+            String newPassword
+    ) {}
 }

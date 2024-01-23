@@ -15,7 +15,6 @@ import lombok.ToString;
 @ToString
 @Table(name = "password_history")
 public final class HistoryEntity extends UuidBaseEntity {
-    public String accountId;
     public String username;
     public String password;
 }
