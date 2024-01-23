@@ -16,6 +16,22 @@ services: 	#service들 정의
       - ./db/initdb.d:/docker-entrypoint-initdb.d:ro
     env_file:
       - .env
+  bacs_admin_postgresql:
+    image: postgres:14
+    environment:
+      TZ: Asia/Seoul
+      POSTGRES_DB: '${ADMIN_POSTGRES_DBNAME}'
+      POSTGRES_USER: '${ADMIN_POSTGRES_USERNAME}'
+      POSTGRES_PASSWORD: '${ADMIN_POSTGRES_PASSWORD}'
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+    restart: on-failure
+    ports:
+      - '5434:5432'
+    volumes:
+      - bacs_volume_admin_postgres:/var/lib/postgresql/data
+      - ./db/initdb.d:/docker-entrypoint-initdb.d:ro
+    env_file:
+      - .env
 
   bacs_auth_redis:
     image: redis:7.0
@@ -46,4 +62,5 @@ services: 	#service들 정의
 
 volumes:
   bacs_volume_auth_postgres:
+  bacs_volume_admin_postgres:
   bacs_volume_auth_redis:

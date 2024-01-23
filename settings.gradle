@@ -34,32 +34,6 @@ findProject(':core-modules:secure-random-core')?.name = 'secure-random-core'
 include 'services:homepage-service'
 findProject(':services:homepage-service')?.name = 'homepage-service'
 
-// Admin ===============================================================================================================
-
-include 'services:admin-service'
-findProject(':services:admin-service')?.name = 'admin-service'
-
-include 'services:admin-service:data'
-findProject(':services:admin-service:data')?.name = 'data'
-
-include 'services:admin-service:driving-adapters'
-findProject(':services:admin-service:driving-adapters')?.name = 'driving-adapters'
-
-include 'services:admin-service:driven-adapters'
-findProject(':services:admin-service:driven-adapters')?.name = 'driven-adapters'
-
-include 'services:admin-service:admin-application'
-findProject(':services:admin-service:admin-application')?.name = 'admin-application'
-
-include 'services:admin-service:data:admin-domain'
-findProject(':services:admin-service:data:admin-domain')?.name = 'admin-domain'
-
-include 'services:admin-service:data:admin-exception'
-findProject(':services:admin-service:data:admin-exception')?.name = 'admin-exception'
-
-include 'services:admin-service:data:admin-readmodels'
-findProject(':services:admin-service:data:admin-readmodels')?.name = 'admin-readmodels'
-
 // Kiosk ===============================================================================================================
 
 include 'services:kiosk-service'
@@ -98,4 +72,36 @@ findProject(':services:authentication-service:driving-adapters:authentication-we
 
 include 'services:authentication-service:driven-adapters:authentication-redis-adapter'
 findProject(':services:authentication-service:driven-adapters:authentication-redis-adapter')?.name = 'authentication-redis-adapter'
+
+// Admin ===============================================================================================================
+
+include 'services:admin-service'
+findProject(':services:admin-service')?.name = 'admin-service'
+
+include 'services:admin-service:data'
+findProject(':services:admin-service:data')?.name = 'data'
+
+include 'services:admin-service:driving-adapters'
+findProject(':services:admin-service:driving-adapters')?.name = 'driving-adapters'
+
+include 'services:admin-service:driven-adapters'
+findProject(':services:admin-service:driven-adapters')?.name = 'driven-adapters'
+
+include 'services:admin-service:admin-application'
+findProject(':services:admin-service:admin-application')?.name = 'admin-application'
+
+include 'services:admin-service:data:admin-domain'
+findProject(':services:admin-service:data:admin-domain')?.name = 'admin-domain'
+
+include 'services:admin-service:data:admin-exception'
+findProject(':services:admin-service:data:admin-exception')?.name = 'admin-exception'
+
+include 'services:admin-service:data:admin-readmodels'
+findProject(':services:admin-service:data:admin-readmodels')?.name = 'admin-readmodels'
+
+include 'services:admin-service:driven-adapters:admin-rdb-adapter'
+findProject(':services:admin-service:driven-adapters:admin-rdb-adapter')?.name = 'admin-rdb-adapter'
+
+include 'services:admin-service:driving-adapters:admin-web-adapter'
+findProject(':services:admin-service:driving-adapters:admin-web-adapter')?.name = 'admin-web-adapter'
 
