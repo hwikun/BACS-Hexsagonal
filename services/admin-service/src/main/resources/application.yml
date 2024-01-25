@@ -17,9 +17,9 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${AUTH_POSTGRES_URL}
-    username: ${AUTH_POSTGRES_USERNAME}
-    password: ${AUTH_POSTGRES_PASSWORD}
+    url: ${ADMIN_POSTGRES_URL}
+    username: ${ADMIN_POSTGRES_USERNAME}
+    password: ${ADMIN_POSTGRES_PASSWORD}
     hikari:
       connectionTimeout: 30_000
       idleTimeout: 600_000
