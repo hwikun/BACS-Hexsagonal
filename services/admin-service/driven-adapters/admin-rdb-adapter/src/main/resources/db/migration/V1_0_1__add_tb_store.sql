@@ -10,5 +10,6 @@ CREATE TABLE IF NOT EXISTS store (
 
     CONSTRAINT pk_store PRIMARY KEY (id),
     CONSTRAINT uq_store_username UNIQUE (username),
+    CONSTRAINT uq_store_name UNIQUE (store_name),
     CONSTRAINT valid_status CHECK ( status IN ('ACTIVE','PROTECTED', 'SUSPENDED', 'REMOVED') )
 );

@@ -23,15 +23,15 @@ public class StoreService implements StoreUseCase {
     }
 
     @Override
-    public void deleteStore(String username) {
-        Store target = storeRepository.findStore(username)
+    public void deleteStore(Store store) {
+        Store target = storeRepository.findStoreByUsername(store.username)
                 .orElseThrow(StoreErrorCode.STORE_NULL::defaultException);
         storeRepository.delete(target);
     }
 
     @Override
     public Store updateStore(Store store) {
-        Store target = storeRepository.findStore(store.username)
+        Store target = storeRepository.findStoreByUsername(store.username)
                 .orElseThrow(StoreErrorCode.STORE_NULL::defaultException);
 
         if (store.storeName != null) {

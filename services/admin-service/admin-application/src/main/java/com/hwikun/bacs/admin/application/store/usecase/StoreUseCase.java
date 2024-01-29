@@ -4,7 +4,7 @@ import com.hwikun.bacs.admin.domain.Store;
 
 public interface StoreUseCase {
     Store createStore(Store store);
-    void deleteStore(String username);
+    void deleteStore(Store store);
     Store updateStore(Store store);
 
 }

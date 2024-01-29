@@ -26,7 +26,8 @@ public class DefaultStoreProxyService implements StoreProxyService {
 
     @Override
     public boolean deleteStore(DeleteStoreRequestDto dto) {
-        storeUseCase.deleteStore(dto.username());
+        Store store = mapper.toDomain(dto);
+        storeUseCase.deleteStore(store);
         return true;
     }
 

@@ -9,7 +9,7 @@ public interface StoreRepository {
 
     boolean existsStore(String username);
 
-    Optional<Store> findStore(String username);
+    Optional<Store> findStoreByUsername(String username);
 
     void delete(Store target);
 

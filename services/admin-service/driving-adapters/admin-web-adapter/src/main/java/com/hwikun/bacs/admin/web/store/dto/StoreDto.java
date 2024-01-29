@@ -22,12 +22,19 @@ public final class StoreDto {
     ) {}
     @Builder
     public record CreateStoreResponseDto(
-            boolean isSuccess
+            String id,
+            String username,
+            String storeName,
+            String address,
+            String storeDigit,
+            StoreStatus status
     ) {}
     @Builder
     public record DeleteStoreRequestDto(
             @NotBlank
-            String username
+            String username,
+            @NotBlank
+            String storeName
     ) {}
     @Builder
     public record DeleteStoreResponseDto(

@@ -32,7 +32,7 @@ public class StorePersistence implements StoreRepository {
     }
 
     @Override
-    public Optional<Store> findStore(String username) {
+    public Optional<Store> findStoreByUsername(String username) {
         return storeJpaRepository.findByUsername(username)
                 .map(mapper::toDomain);
     }

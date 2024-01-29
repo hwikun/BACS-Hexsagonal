@@ -1,5 +1,6 @@
 package com.hwikun.bacs.admin.web.store.controller;
 
+import com.hwikun.bacs.admin.domain.Store;
 import com.hwikun.bacs.admin.domain.types.StoreStatus;
 import com.hwikun.bacs.admin.web.store.dto.StoreDto.CreateStoreRequestDto;
 import com.hwikun.bacs.admin.web.store.dto.StoreDto.CreateStoreResponseDto;
@@ -9,6 +10,7 @@ import com.hwikun.bacs.admin.web.store.dto.StoreDto.UpdateStoreRequestDto;
 import com.hwikun.bacs.admin.web.store.dto.StoreDto.UpdateStoreResponseDto;
 import com.hwikun.bacs.admin.web.store.service.StoreProxyService;
 import com.hwikun.bacs.core.timer.ExeTimer;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,16 +28,21 @@ public class StoreApi {
     private final StoreProxyService storeProxyService;
 
     @PostMapping("/create")
-    public CreateStoreResponseDto createStore(@RequestBody CreateStoreRequestDto dto) {
-        boolean isSuccess = storeProxyService.createStore(dto, StoreStatus.ACTIVE) != null;
+    public CreateStoreResponseDto createStore(@RequestBody @Valid CreateStoreRequestDto dto) {
+        Store store = storeProxyService.createStore(dto, StoreStatus.ACTIVE);
 
         return CreateStoreResponseDto.builder()
-                .isSuccess(isSuccess)
+                .id(store.getId())
+                .username(store.username)
+                .storeName(store.storeName)
+                .address(store.address)
+                .storeDigit(store.storeDigit)
+                .status(store.status)
                 .build();
     }
 
     @PostMapping("/delete")
-    public DeleteStoreResponseDto deleteStore(@RequestBody DeleteStoreRequestDto dto) {
+    public DeleteStoreResponseDto deleteStore(@RequestBody @Valid DeleteStoreRequestDto dto) {
         boolean isSuccess = storeProxyService.deleteStore(dto);
         return DeleteStoreResponseDto.builder()
                 .isSuccess(isSuccess)
@@ -43,7 +50,7 @@ public class StoreApi {
     }
 
     @PostMapping("/update")
-    public UpdateStoreResponseDto updateStore(@RequestBody UpdateStoreRequestDto dto) {
+    public UpdateStoreResponseDto updateStore(@RequestBody @Valid UpdateStoreRequestDto dto) {
         boolean isSuccess = storeProxyService.updateStore(dto) != null;
 
         return UpdateStoreResponseDto.builder()
