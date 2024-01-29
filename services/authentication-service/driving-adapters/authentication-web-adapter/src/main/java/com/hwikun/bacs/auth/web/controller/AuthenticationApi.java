@@ -12,6 +12,7 @@ import com.hwikun.bacs.auth.web.service.AuthenticationProxyService;
 import com.hwikun.bacs.core.timer.ExeTimer;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class AuthenticationApi {
 
     @PostMapping("/sign-up")
     public SignUpResponseDto signUp(
-            @RequestBody SignUpRequestDto dto
+            @RequestBody @Valid SignUpRequestDto dto
     ) {
         boolean isSuccess = authenticationProxyService
                 .signUp(dto, AccountStatus.ACTIVE) != null;
@@ -43,7 +44,7 @@ public class AuthenticationApi {
 
     @PostMapping("/sign-in")
     public SignInResponseDto signIn(
-            @RequestBody SignInRequestDto body,
+            @RequestBody @Valid SignInRequestDto body,
             HttpServletResponse response
     ) {
         Tokens tokens = authenticationProxyService.signIn(body);
@@ -62,7 +63,7 @@ public class AuthenticationApi {
     }
 
     @PostMapping("/change-password")
-    public ChangePasswordResponseDto changePassword(@RequestBody ChangePasswordRequestDto dto) {
+    public ChangePasswordResponseDto changePassword(@RequestBody @Valid ChangePasswordRequestDto dto) {
         boolean isSuccess = authenticationProxyService.changePassword(dto);
 
         return ChangePasswordResponseDto.builder()
