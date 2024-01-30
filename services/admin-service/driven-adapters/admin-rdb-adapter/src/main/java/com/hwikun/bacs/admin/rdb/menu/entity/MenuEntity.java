@@ -1,24 +1,23 @@
-package com.hwikun.bacs.admin.domain;
+package com.hwikun.bacs.admin.rdb.menu.entity;
 
+import com.hwikun.bacs.core.jpa.support.UuidBaseEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.io.Serializable;
-import java.util.List;
-
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public final class Menu implements Serializable {
-    @Getter
-    private String id;
+@Table(name = "menu")
+public class MenuEntity extends UuidBaseEntity {
     public String categoryId;
     public String menuName;
-    public int menuPrice;
+    public int    menuPrice;
     public String menuDesc;
     public String menuImg;
 }
