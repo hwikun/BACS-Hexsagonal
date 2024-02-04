@@ -20,11 +20,14 @@ findProject(':core-modules:server-config-modules:exe-timer-core')?.name = 'exe-t
 include 'core-modules:server-config-modules:cors-core'
 findProject(':core-modules:server-config-modules:cors-core')?.name = 'cors-core'
 
+include 'core-modules:jwt-modules:jwt-properties'
+findProject(':core-modules:jwt-modules:jwt-properties')?.name = 'jwt-properties'
+
 include 'core-modules:jwt-modules:jwt-provider-core'
 findProject(':core-modules:jwt-modules:jwt-provider-core')?.name = 'jwt-provider-core'
 
-include 'core-modules:jwt-modules:jwt-properties'
-findProject(':core-modules:jwt-modules:jwt-properties')?.name = 'jwt-properties'
+include 'core-modules:jwt-modules:jwt-parser-core'
+findProject(':core-modules:jwt-modules:jwt-parser-core')?.name = 'jwt-parser-core'
 
 include 'core-modules:secure-random-core'
 findProject(':core-modules:secure-random-core')?.name = 'secure-random-core'
@@ -104,4 +107,5 @@ findProject(':services:admin-service:driven-adapters:admin-rdb-adapter')?.name =
 
 include 'services:admin-service:driving-adapters:admin-web-adapter'
 findProject(':services:admin-service:driving-adapters:admin-web-adapter')?.name = 'admin-web-adapter'
+
 

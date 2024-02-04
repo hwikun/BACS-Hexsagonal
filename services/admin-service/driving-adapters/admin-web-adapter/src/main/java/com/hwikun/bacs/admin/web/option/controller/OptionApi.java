@@ -13,6 +13,8 @@ import com.hwikun.bacs.admin.web.option.dto.OptionDto.UpdateOptionRequestDto;
 import com.hwikun.bacs.admin.web.option.dto.OptionDto.UpdateOptionResponseDto;
 import com.hwikun.bacs.admin.web.option.service.OptionProxyService;
 import com.hwikun.bacs.core.timer.ExeTimer;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +36,10 @@ public class OptionApi {
 
     @PostMapping("/create")
     public CreateOptionResponseDto createOption(
-            @RequestBody @Valid CreateOptionRequestDto dto
+            @RequestBody @Valid CreateOptionRequestDto dto,
+            HttpServletRequest request
     ) {
+        log.debug("request data: {}", request.getHeader("x-jwt"));
         Option option = optionProxyService.createOption(dto);
 
         return CreateOptionResponseDto.builder()

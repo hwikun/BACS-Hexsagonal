@@ -138,6 +138,20 @@ project(jwtProviderModule) {
     }
 }
 
+project(jwtParserModule) {
+    dependencies {
+        implementation commonProject
+        api project(jwtPropertiesModule)
+
+        // JWT
+        implementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+        implementation "io.jsonwebtoken:jjwt-gson:${jjwtVersion}"
+
+        implementation 'org.springframework:spring-webmvc'
+        implementation 'jakarta.servlet:jakarta.servlet-api'
+    }
+}
+
 project(secureRandomModule) {
     dependencies {
         implementation commonProject
@@ -237,6 +251,7 @@ project(authenticationWebAdapterModule) {
     dependencies {
         implementation commonProject
         implementation project(exeTimerCoreModule)
+        implementation project(jwtParserModule)
 
         implementation project(authenticationApplicationModule)
         implementation project(authenticationReadModelsModule)
@@ -347,6 +362,7 @@ project(adminWebAdapterModule) {
     dependencies {
         implementation commonProject
         implementation project(exeTimerCoreModule)
+        implementation project(jwtParserModule)
 
         implementation project(adminApplicationModule)
         implementation project(adminReadModelsModule)

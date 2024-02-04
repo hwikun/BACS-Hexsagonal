@@ -9,11 +9,14 @@ import com.hwikun.bacs.admin.web.store.dto.StoreDto.DeleteStoreResponseDto;
 import com.hwikun.bacs.admin.web.store.dto.StoreDto.UpdateStoreRequestDto;
 import com.hwikun.bacs.admin.web.store.dto.StoreDto.UpdateStoreResponseDto;
 import com.hwikun.bacs.admin.web.store.service.StoreProxyService;
+import com.hwikun.bacs.core.jwt.JwtUsername;
 import com.hwikun.bacs.core.timer.ExeTimer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,5 +59,10 @@ public class StoreApi {
         return UpdateStoreResponseDto.builder()
                 .isSuccess(isSuccess)
                 .build();
+    }
+    @GetMapping("/example")
+    public ResponseEntity<String> getExample(@JwtUsername String username) {
+        log.info("Hello, {}", username);
+        return ResponseEntity.ok("Hello, " + username);
     }
 }

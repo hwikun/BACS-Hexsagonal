@@ -43,3 +43,5 @@ out/
 /config/consul/data/raft/raft.db
 /config/consul/data/serf/remote.snapshot
 /config/consul/data/server_metadata.json
+/config/consul/data/raft/snapshots/4-16384-1706780528482/meta.json
+/config/consul/data/raft/snapshots/4-16384-1706780528482/state.bin
