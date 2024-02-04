@@ -19,21 +19,21 @@ public class DefaultStoreProxyService implements StoreProxyService {
 
     private final StoreUseCase storeUseCase;
     @Override
-    public Store createStore(CreateStoreRequestDto dto, StoreStatus status) {
-        Store store = mapper.toDomain(dto, status);
+    public Store createStore(String username, CreateStoreRequestDto dto, StoreStatus status) {
+        Store store = mapper.toDomain(username, dto, status);
         return storeUseCase.createStore(store);
     }
 
     @Override
-    public boolean deleteStore(DeleteStoreRequestDto dto) {
-        Store store = mapper.toDomain(dto);
+    public boolean deleteStore(String username, DeleteStoreRequestDto dto) {
+        Store store = mapper.toDomain(username, dto);
         storeUseCase.deleteStore(store);
         return true;
     }
 
     @Override
-    public Store updateStore(UpdateStoreRequestDto dto) {
-        Store store = mapper.toDomain(dto);
+    public Store updateStore(String username, UpdateStoreRequestDto dto) {
+        Store store = mapper.toDomain(username, dto);
         return storeUseCase.updateStore(store);
     }
 }

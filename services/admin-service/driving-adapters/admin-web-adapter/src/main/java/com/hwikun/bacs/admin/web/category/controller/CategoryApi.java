@@ -4,13 +4,13 @@ import com.hwikun.bacs.admin.web.category.dto.CategoryDto.CreateCategoryRequestD
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.CreateCategoryResponseDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.DeleteCategoryRequestDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.DeleteCategoryResponseDto;
-import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryListRequestDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryListResponseDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryRequestDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryResponseDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.UpdateCategoryRequestDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.UpdateCategoryResponseDto;
 import com.hwikun.bacs.admin.web.category.service.CategoryProxyService;
+import com.hwikun.bacs.core.jwt.JwtUsername;
 import com.hwikun.bacs.core.timer.ExeTimer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,23 +30,34 @@ public class CategoryApi {
     private final CategoryProxyService categoryProxyService;
 
     @PostMapping("/create")
-    public CreateCategoryResponseDto createCategory(@RequestBody @Valid CreateCategoryRequestDto dto) {
-        return categoryProxyService.createCategory(dto);
+    public CreateCategoryResponseDto createCategory(
+            @RequestBody @Valid CreateCategoryRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        return categoryProxyService.createCategory(username, dto);
     }
 
     @GetMapping("/read")
-    public ReadCategoryResponseDto readCategory(@RequestBody @Valid ReadCategoryRequestDto dto) {
-        return categoryProxyService.readCategory(dto);
+    public ReadCategoryResponseDto readCategory(
+            @RequestBody @Valid ReadCategoryRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        return categoryProxyService.readCategory(username, dto);
     }
 
     @GetMapping("/read-all")
-    public ReadCategoryListResponseDto readAllCategory(@RequestBody @Valid ReadCategoryListRequestDto dto) {
-        return categoryProxyService.readCategoryList(dto);
+    public ReadCategoryListResponseDto readAllCategory(
+            @JwtUsername @Valid String username
+    ) {
+        return categoryProxyService.readCategoryList(username);
     }
 
     @PostMapping("/delete")
-    public DeleteCategoryResponseDto deleteCategory(@RequestBody @Valid DeleteCategoryRequestDto dto) {
-        boolean isSuccess = categoryProxyService.deleteCategory(dto);
+    public DeleteCategoryResponseDto deleteCategory(
+            @RequestBody @Valid DeleteCategoryRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        boolean isSuccess = categoryProxyService.deleteCategory(username, dto);
 
         return DeleteCategoryResponseDto.builder()
                 .isSuccess(isSuccess)
@@ -54,8 +65,11 @@ public class CategoryApi {
     }
 
     @PostMapping("/update")
-    public UpdateCategoryResponseDto updateCategory(@RequestBody @Valid UpdateCategoryRequestDto dto) {
-        boolean isSuccess = categoryProxyService.updateCategory(dto) != null;
+    public UpdateCategoryResponseDto updateCategory(
+            @RequestBody @Valid UpdateCategoryRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        boolean isSuccess = categoryProxyService.updateCategory(username, dto) != null;
 
         return UpdateCategoryResponseDto.builder()
                 .isSuccess(isSuccess)

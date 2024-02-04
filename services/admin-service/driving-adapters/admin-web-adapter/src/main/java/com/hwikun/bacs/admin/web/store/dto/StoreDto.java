@@ -12,8 +12,6 @@ public final class StoreDto {
     @Builder
     public record CreateStoreRequestDto(
             @NotBlank
-            String username,
-            @NotBlank
             String storeName,
             @NotBlank
             String address,

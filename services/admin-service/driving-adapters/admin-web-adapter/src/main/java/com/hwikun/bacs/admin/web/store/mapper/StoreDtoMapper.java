@@ -12,13 +12,9 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 @Mapper(componentModel = SPRING)
 public interface StoreDtoMapper {
 
-    Store toDomain(CreateStoreRequestDto dto);
+    Store toDomain(String username, CreateStoreRequestDto dto, StoreStatus status);
 
-    Store toDomain(UpdateStoreRequestDto dto);
+    Store toDomain(String username, UpdateStoreRequestDto dto);
 
-    Store toDomain(CreateStoreRequestDto dto, StoreStatus status);
-
-    Store toDomain(String storeName);
-
-    Store toDomain(DeleteStoreRequestDto dto);
+    Store toDomain(String username, DeleteStoreRequestDto dto);
 }

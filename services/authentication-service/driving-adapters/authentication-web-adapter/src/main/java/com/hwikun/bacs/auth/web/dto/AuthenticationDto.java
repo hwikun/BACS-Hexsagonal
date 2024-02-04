@@ -47,8 +47,6 @@ public final class AuthenticationDto {
     @Builder
     public record ChangePasswordRequestDto(
             @NotBlank
-            String username,
-            @NotBlank
             String newPassword
     ) {}
 }

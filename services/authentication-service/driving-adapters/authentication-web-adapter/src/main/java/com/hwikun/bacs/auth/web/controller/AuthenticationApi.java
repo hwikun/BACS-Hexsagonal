@@ -9,6 +9,7 @@ import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignInResponseDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignUpRequestDto;
 import com.hwikun.bacs.auth.web.dto.AuthenticationDto.SignUpResponseDto;
 import com.hwikun.bacs.auth.web.service.AuthenticationProxyService;
+import com.hwikun.bacs.core.jwt.JwtUsername;
 import com.hwikun.bacs.core.timer.ExeTimer;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -63,8 +64,11 @@ public class AuthenticationApi {
     }
 
     @PostMapping("/change-password")
-    public ChangePasswordResponseDto changePassword(@RequestBody @Valid ChangePasswordRequestDto dto) {
-        boolean isSuccess = authenticationProxyService.changePassword(dto);
+    public ChangePasswordResponseDto changePassword(
+            @RequestBody @Valid ChangePasswordRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        boolean isSuccess = authenticationProxyService.changePassword(dto, username);
 
         return ChangePasswordResponseDto.builder()
                 .isSuccess(isSuccess)

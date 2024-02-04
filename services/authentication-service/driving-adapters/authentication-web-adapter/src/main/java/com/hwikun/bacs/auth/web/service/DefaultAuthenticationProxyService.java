@@ -31,7 +31,7 @@ public class DefaultAuthenticationProxyService implements AuthenticationProxySer
     }
 
     @Override
-    public boolean changePassword(ChangePasswordRequestDto dto) {
-        return authenticationUseCase.changePassword(dto.username(), dto.newPassword()) != null;
+    public boolean changePassword(ChangePasswordRequestDto dto, String username) {
+        return authenticationUseCase.changePassword(username, dto.newPassword()) != null;
     }
 }

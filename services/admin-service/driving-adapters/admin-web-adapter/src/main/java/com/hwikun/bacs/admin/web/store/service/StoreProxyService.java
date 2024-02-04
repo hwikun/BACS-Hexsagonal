@@ -7,9 +7,9 @@ import com.hwikun.bacs.admin.web.store.dto.StoreDto.DeleteStoreRequestDto;
 import com.hwikun.bacs.admin.web.store.dto.StoreDto.UpdateStoreRequestDto;
 
 public interface StoreProxyService {
-    Store createStore(CreateStoreRequestDto dto, StoreStatus status);
+    Store createStore(String username, CreateStoreRequestDto dto, StoreStatus status);
 
-    boolean deleteStore(DeleteStoreRequestDto dto);
+    boolean deleteStore(String username, DeleteStoreRequestDto dto);
 
-    Store updateStore(UpdateStoreRequestDto dto);
+    Store updateStore(String username, UpdateStoreRequestDto dto);
 }

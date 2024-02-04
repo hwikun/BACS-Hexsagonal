@@ -12,5 +12,5 @@ public interface AuthenticationProxyService {
 
     Tokens signIn(SignInRequestDto body);
 
-    boolean changePassword(ChangePasswordRequestDto dto);
+    boolean changePassword(ChangePasswordRequestDto dto, String username);
 }

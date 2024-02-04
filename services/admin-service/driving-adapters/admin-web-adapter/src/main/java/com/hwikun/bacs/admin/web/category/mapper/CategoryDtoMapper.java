@@ -13,7 +13,7 @@ public interface CategoryDtoMapper {
 
     Category toDomain(ReadCategoryRequestDto dto);
 
-    Category toDomain(String s, String s1);
+    Category toDomain(String username, String categoryName);
 
     Category toDomain(String categoryName);
 }

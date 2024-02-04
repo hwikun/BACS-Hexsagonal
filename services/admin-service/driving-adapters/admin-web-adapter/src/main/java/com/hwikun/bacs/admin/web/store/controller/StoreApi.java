@@ -31,8 +31,11 @@ public class StoreApi {
     private final StoreProxyService storeProxyService;
 
     @PostMapping("/create")
-    public CreateStoreResponseDto createStore(@RequestBody @Valid CreateStoreRequestDto dto) {
-        Store store = storeProxyService.createStore(dto, StoreStatus.ACTIVE);
+    public CreateStoreResponseDto createStore(
+            @RequestBody @Valid CreateStoreRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        Store store = storeProxyService.createStore(username, dto, StoreStatus.ACTIVE);
 
         return CreateStoreResponseDto.builder()
                 .id(store.getId())
@@ -45,16 +48,22 @@ public class StoreApi {
     }
 
     @PostMapping("/delete")
-    public DeleteStoreResponseDto deleteStore(@RequestBody @Valid DeleteStoreRequestDto dto) {
-        boolean isSuccess = storeProxyService.deleteStore(dto);
+    public DeleteStoreResponseDto deleteStore(
+            @RequestBody @Valid DeleteStoreRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        boolean isSuccess = storeProxyService.deleteStore(username, dto);
         return DeleteStoreResponseDto.builder()
                 .isSuccess(isSuccess)
                 .build();
     }
 
     @PostMapping("/update")
-    public UpdateStoreResponseDto updateStore(@RequestBody @Valid UpdateStoreRequestDto dto) {
-        boolean isSuccess = storeProxyService.updateStore(dto) != null;
+    public UpdateStoreResponseDto updateStore(
+            @RequestBody @Valid UpdateStoreRequestDto dto,
+            @JwtUsername @Valid String username
+    ) {
+        boolean isSuccess = storeProxyService.updateStore(username, dto) != null;
 
         return UpdateStoreResponseDto.builder()
                 .isSuccess(isSuccess)

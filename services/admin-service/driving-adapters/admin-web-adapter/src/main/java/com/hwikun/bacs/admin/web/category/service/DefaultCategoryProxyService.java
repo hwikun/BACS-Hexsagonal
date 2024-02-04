@@ -5,7 +5,6 @@ import com.hwikun.bacs.admin.domain.Category;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.CreateCategoryRequestDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.CreateCategoryResponseDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.DeleteCategoryRequestDto;
-import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryListRequestDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryListResponseDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryRequestDto;
 import com.hwikun.bacs.admin.web.category.dto.CategoryDto.ReadCategoryResponseDto;
@@ -24,9 +23,9 @@ public class DefaultCategoryProxyService implements CategoryProxyService {
     private final CategoryDtoMapper mapper;
     private final CategoryUseCase categoryUseCase;
     @Override
-    public CreateCategoryResponseDto createCategory(CreateCategoryRequestDto dto) {
+    public CreateCategoryResponseDto createCategory(String username, CreateCategoryRequestDto dto) {
         Category category = mapper.toDomain(dto.categoryName());
-        Category newCategory = categoryUseCase.createCategory(dto.username(), category);
+        Category newCategory = categoryUseCase.createCategory(username, category);
         return CreateCategoryResponseDto.builder()
                 .id(newCategory.getId())
                 .storeId(newCategory.storeId)
@@ -35,9 +34,9 @@ public class DefaultCategoryProxyService implements CategoryProxyService {
     }
 
     @Override
-    public ReadCategoryResponseDto readCategory(ReadCategoryRequestDto dto) {
+    public ReadCategoryResponseDto readCategory(String username, ReadCategoryRequestDto dto) {
         Category category = mapper.toDomain(dto.categoryName());
-        Category targetCategory = categoryUseCase.readCategory(dto.username(), category);
+        Category targetCategory = categoryUseCase.readCategory(username, category);
 
         return ReadCategoryResponseDto.builder()
                 .id(targetCategory.getId())
@@ -46,21 +45,21 @@ public class DefaultCategoryProxyService implements CategoryProxyService {
     }
 
     @Override
-    public boolean deleteCategory(DeleteCategoryRequestDto dto) {
+    public boolean deleteCategory(String username, DeleteCategoryRequestDto dto) {
         Category category = mapper.toDomain(dto.categoryName());
-        categoryUseCase.deleteCategory(dto.username(), category);
+        categoryUseCase.deleteCategory(username, category);
         return true;
     }
 
     @Override
-    public Category updateCategory(UpdateCategoryRequestDto dto) {
+    public Category updateCategory(String username, UpdateCategoryRequestDto dto) {
         Category category = mapper.toDomain(dto.categoryName());
-        return categoryUseCase.updateCategory(dto.username(), category, dto.newCategoryName());
+        return categoryUseCase.updateCategory(username, category, dto.newCategoryName());
     }
 
     @Override
-    public ReadCategoryListResponseDto readCategoryList(ReadCategoryListRequestDto dto) {
-        List<Category> categoryList = categoryUseCase.readCategoryList(dto.username());
+    public ReadCategoryListResponseDto readCategoryList(String username) {
+        List<Category> categoryList = categoryUseCase.readCategoryList(username);
 
         return ReadCategoryListResponseDto.builder()
                 .categoryList(categoryList)

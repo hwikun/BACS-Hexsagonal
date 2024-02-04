@@ -12,8 +12,6 @@ public final class CategoryDto {
     @Builder
     public record CreateCategoryRequestDto(
             @NotBlank
-            String username,
-            @NotBlank
             String categoryName
     ) {}
     @Builder
@@ -25,8 +23,6 @@ public final class CategoryDto {
     @Builder
     public record ReadCategoryRequestDto(
             @NotBlank
-            String username,
-            @NotBlank
             String categoryName
     ) {}
     @Builder
@@ -35,18 +31,11 @@ public final class CategoryDto {
             String categoryName
     ) {}
     @Builder
-    public record ReadCategoryListRequestDto(
-            @NotBlank
-            String username
-    ) {}
-    @Builder
     public record ReadCategoryListResponseDto(
             List<Category> categoryList
     ) {}
     @Builder
     public record UpdateCategoryRequestDto(
-            @NotBlank
-            String username,
             @NotBlank
             String categoryName,
             @NotBlank
@@ -58,8 +47,6 @@ public final class CategoryDto {
     ) {}
     @Builder
     public record DeleteCategoryRequestDto(
-            @NotBlank
-            String username,
             @NotBlank
             String categoryName
     ) {}
